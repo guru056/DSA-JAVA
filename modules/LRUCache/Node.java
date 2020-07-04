@@ -2,18 +2,15 @@ package LRUCache;
 
 public class Node {
 
-    int data;
+    private int data;
+    private int key;
     Node prev;
     Node next;
 
-    public Node(int data) {
+    public Node(int key, int data)
+    {
+        this.key = key;
         this.data = data;
-        this.prev = null;
-        this.next = null;
-    }
-
-    public Node(Node node) {
-        this.data = node.data;
         this.prev = null;
         this.next = null;
     }
@@ -21,4 +18,6 @@ public class Node {
     public int getData() {
         return data;
     }
+
+    public int getKey() { return key; }
 }

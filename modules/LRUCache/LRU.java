@@ -18,34 +18,50 @@ public class LRU {
     {
         Node node = this.map.get(key);
         if (node != null){
-            return this.map.get(key).data;
+            this.dll.moveToFirst(node);
+            return node.getData();
         }
         System.out.println("[MISS] for cache key : " + key);
         return -1;
     }
 
+    /**
+     * if map has key present
+     *  - Move node to first
+     * if map does not have key present
+     *  - If current capacity is less than cache capacity
+     *      - insert node at first
+     *      - set in map -> key, ll.getHead
+     *      - increment size
+     *  - else
+     *      - remove tail Node from LL
+     *      - remove tail key from map
+     *      - insert new node at first
+     *      - set in map -> key, ll.getHead
+     * @param key
+     * @param value
+     */
     public void set(int key, int value)
     {
-        value = key;
         Node node = this.map.get(key);
         if (node != null){
             this.dll.moveToFirst(node);
-            this.map.put(key, this.dll.getHead());
+//            this.map.put(key, this.dll.getHead()); //not needed
             return;
         }
 
         if (this.currentSize < this.CACHE_CAPACITY){
-            Node newNode = new Node(value);
+            Node newNode = new Node(key,value);
             this.dll.insertAtFirst(newNode);
             this.map.put(key,this.dll.getHead());
             this.currentSize++;
             return;
         }
 
-        Node newNode = new Node(value);
+        Node newNode = new Node(key, value);
         Node tail = this.dll.getTail();
         this.dll.removeLastNode();
-        this.map.remove(tail.data);
+        this.map.remove(tail.getKey());
         this.dll.insertAtFirst(newNode);
         this.map.put(key,this.dll.getHead());
         return;

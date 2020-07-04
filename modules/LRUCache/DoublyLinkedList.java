@@ -34,19 +34,19 @@ public class DoublyLinkedList {
             return;
         }
         this.tail.prev.next = null;
+        this.tail = this.tail.prev;
         this.tail.prev = null;
     }
 
     public void insertAtFirst(Node node){
-        Node newNode = new Node(node);
         if (this.head == null){
-            this.head = newNode;
+            this.head = node;
             this.tail = this.head;
             return;
         }
-        this.head.prev = newNode;
-        newNode.next = head;
-        this.head = newNode;
+        this.head.prev = node;
+        node.next = head;
+        this.head = node;
     }
 
     public void moveToFirst(Node node){
@@ -57,6 +57,7 @@ public class DoublyLinkedList {
         if (node == this.tail){
             this.tail = node.prev;
         }
+        this.head.prev = node;
         node.prev = null;
         node.next = this.head;
         this.head = node;
