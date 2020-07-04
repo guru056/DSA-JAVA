@@ -1,9 +1,6 @@
 package Hashing;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //https://www.geeksforgeeks.org/count-distinct-elements-in-every-window-of-size-k/
 public class DistinctElementsInSlidingWindow {
@@ -49,6 +46,35 @@ public class DistinctElementsInSlidingWindow {
             }
 
             resultList.add(count);
+        }
+        return resultList;
+    }
+
+    //same logic but concise code.
+    public static List<Integer> countDistinctInEveryWindowK(int[] arr, int k)
+    {
+        int n = arr.length;
+        List<Integer> resultList = new ArrayList<>();
+
+        Map<Integer, Integer> map = new HashMap<>();
+        int i ;
+        for (i = 0 ; i < k; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i],0) + 1);
+        }
+        resultList.add(map.size());
+
+        for (i = k; i < n; i++) {
+            int newElement = arr[i];
+            int outDatedIndex = i - k;
+            int outDatedElement = arr[outDatedIndex];
+
+            if (map.get(outDatedElement) > 1) {
+                map.put(outDatedElement, map.get(outDatedElement) - 1);
+            } else {
+                map.remove(outDatedElement);
+            }
+            map.put(newElement, map.getOrDefault(newElement, 0) + 1);
+            resultList.add(map.size());
         }
         return resultList;
     }

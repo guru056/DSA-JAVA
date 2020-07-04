@@ -116,7 +116,7 @@ public class RelativeSorting {
     }
 
     /**
-     * complexity step 1 : NlogN
+     * complexity step 1 : O(N)
      * complexity step 2: O(M)
      * complexity step 3 : O(PlogP)
      * M - size of arr2

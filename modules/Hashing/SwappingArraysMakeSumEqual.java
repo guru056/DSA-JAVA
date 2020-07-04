@@ -11,10 +11,14 @@ import java.util.Set;
 public class SwappingArraysMakeSumEqual {
 
     public static void main(String[] args) {
-        int[] arr1 = {5,7,4,6};
-        int[] arr2 = {1,2,3,8};
+        int[] arr1 = {1,2,3,8};
+        int[] arr2 = {5,7,4,6};
+
+        int[] arr3 = {1,4,5};
+        int[] arr4 = {4,6,3};
 
         printList(getAllSwappingPairs(arr1,arr2));
+        printList(getAllSwappingPairs(arr3,arr4));
     }
     public static List<Pair> getAllSwappingPairs(int[] arr1, int[] arr2)
     {
@@ -32,9 +36,14 @@ public class SwappingArraysMakeSumEqual {
         int sumA = ArrayUtils.getSum(setArr);
         int sumB = ArrayUtils.getSum(nonSetArr);
 
-        int diff = ( sumA - sumB ) / 2;
+        int diff = ( sumA - sumB ) ;
 
         List<Pair> resultList = new LinkedList<>();
+        if (diff % 2 != 0) {
+            return resultList;
+        }
+        diff /= 2;
+
         for (int i = 0; i < nonSetArr.length; i++) {
             if (set.contains(nonSetArr[i] + diff)) {
                 resultList.add(new Pair(nonSetArr[i], nonSetArr[i] + diff));
@@ -45,6 +54,10 @@ public class SwappingArraysMakeSumEqual {
 
     private static void printList(List<Pair> list)
     {
+        if (list.isEmpty()) {
+            System.out.println("No valid pairs!");
+            return;
+        }
         for (Pair p: list) {
             System.out.println(p.i + " ," + p.j);
         }
