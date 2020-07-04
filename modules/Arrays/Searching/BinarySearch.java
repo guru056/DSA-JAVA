@@ -37,4 +37,9 @@ public class BinarySearch {
             return binarySearch(arr, mid + 1, end, key);
         }
     }
+
+    public static int binarySearchUtil(int[] arr, int key)
+    {
+        return binarySearch(arr, 0 ,arr.length - 1, key);
+    }
 }

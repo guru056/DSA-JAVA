@@ -23,6 +23,24 @@ public class RearrangeNegativeAndPositiveNumbers {
         ArrayUtils.printArr(arr);
     }
 
+    /**
+     * int[] arr = {12, 11, -13, -5, 6, -7, 5, -3, -6};
+     * @param arr
+     */
+    public static void rearrangePractice(int[] arr)
+    {
+        int right = arr.length-1 ;
+        int left = 0;
+        while (left < right) {
+            if (arr[left] < 0){
+                left++;
+                continue;
+            }
+            ArrayUtils.swap(arr, left, right);
+            right--;
+        }
+    }
+
     //if order of elements is not important
     public static void rearrange(int[] arr)
     {

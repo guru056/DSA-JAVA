@@ -1,7 +1,7 @@
 package Arrays.SearchingProblems;
 
+//https://www.geeksforgeeks.org/leaders-in-an-array/
 public class LeadersInArray {
-//    https://www.geeksforgeeks.org/leaders-in-an-array/
     public static void main(String[] args) {
         int arr[] = {16, 17, 4, 3, 5, 2};
         printLeaders(arr);

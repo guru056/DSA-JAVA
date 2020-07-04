@@ -31,7 +31,7 @@ public class ReplaceByMultiplicationOfPrevAndNext {
     {
         int n = arr.length;
         int maxElement = Integer.MIN_VALUE;
-        for (int i = 0 ; i < n - 1 ; i++){
+        for (int i = 0 ; i < n - 1 ; i++){ //wrong, need to find max of arr[i-1]*arr[i+1]
             if (maxElement < arr[i]*arr[i+1])
                 maxElement =  arr[i]*arr[i+1];
         }

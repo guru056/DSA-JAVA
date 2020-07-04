@@ -24,13 +24,12 @@ public class ZigzagTraversalOfMatrix {
                 for (int j = 0 ; j < n; j++){
                     System.out.print(mat[i][j] + " ");
                 }
-                reverse = true;
             } else{
                 for (int j = 0 ; j < n; j++){
                     System.out.print(mat[i][n - 1 - j] + " ");
                 }
-                reverse = false;
             }
+            reverse = !reverse;
         }
     }
 }
