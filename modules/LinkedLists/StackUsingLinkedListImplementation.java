@@ -15,9 +15,9 @@ class Stack{
 
     public void push(int data)
     {
-        Node prev = this.top;
-        this.top = new Node(data);
-        this.top.next = prev;
+        Node newNode = new Node(data);
+        newNode.next = this.top;
+        this.top = newNode;
     }
 
     public int pop()

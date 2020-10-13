@@ -6,7 +6,7 @@ public class QueueUsingLinkedListImplementation {
 
 }
 
-class Queue{
+class Queue {
 
     private Node front;
     private Node rear;
@@ -16,10 +16,9 @@ class Queue{
         this.rear = null;
     }
 
-    public void add(int data)
-    {
+    public void add(int data) {
         Node newNode = new Node(data);
-        if (this.front == null){
+        if (this.front == null) {
             this.front = newNode;
             this.rear = this.front;
             return;
@@ -28,8 +27,7 @@ class Queue{
         this.rear = this.rear.next;
     }
 
-    public int poll()
-    {
+    public int poll() {
         if (this.front == null)
             return Integer.MIN_VALUE;
         int result = this.front.data;
@@ -39,8 +37,7 @@ class Queue{
         return result;
     }
 
-    public int peek()
-    {
+    public int peek() {
         if (this.front == null)
             return Integer.MIN_VALUE;
         return this.front.data;

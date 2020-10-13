@@ -57,4 +57,27 @@ public class SinglyLinkedList {
         return llClone;
     }
 
+    public static SinglyLinkedList getMockPalindromeLinkedList()
+    {
+        /** 1->2->3->4->NULL **/
+        SinglyLinkedList ll     = new SinglyLinkedList();
+        ll.head                 = new Node(1);
+        ll.head.next            = new Node(2);
+        ll.head.next.next       = new Node(2);
+        ll.head.next.next.next  = new Node(1);
+        return ll;
+    }
+
+    public static SinglyLinkedList getMockPalindromeLinkedListV2()
+    {
+        /** 1->2->3->4->NULL **/
+        SinglyLinkedList ll             = new SinglyLinkedList();
+        ll.head                         = new Node(1);
+        ll.head.next                    = new Node(2);
+        ll.head.next.next               = new Node(3);
+        ll.head.next.next.next          = new Node(2);
+        ll.head.next.next.next.next     = new Node(1);
+        return ll;
+    }
+
 }
