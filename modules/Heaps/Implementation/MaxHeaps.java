@@ -1,4 +1,4 @@
-package Heaps;
+package Heaps.Implementation;
 
 import Utils.ArrayUtils;
 

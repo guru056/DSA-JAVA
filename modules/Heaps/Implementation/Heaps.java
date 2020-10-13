@@ -1,4 +1,4 @@
-package Heaps;
+package Heaps.Implementation;
 
 abstract public class Heaps {
     protected static final int MAX_SIZE = 100;
