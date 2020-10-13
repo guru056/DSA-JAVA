@@ -12,6 +12,7 @@ public class EmployeeManagerMapping {
     public static void main(String[] args) {
         Map<String, String> map = getMockEmployeeManagerMap();
         System.out.println(getManagerEmployeeHierarchy(map));
+        System.out.println(getManagerEmployeeMap(map)); // better and cleaner
     }
 
     /**
@@ -64,14 +65,11 @@ public class EmployeeManagerMapping {
             return resultList;
         }
 
-        List<String> list = map.get(manager);
+        List<String> directEmployees = map.get(manager);
 
-        for (String employee: list) {
+        for (String employee: directEmployees) {
             resultList.add(employee);
-            List<String> newList = getEmployeesForManager(employee, map);
-            if (!newList.isEmpty()){
-                resultList.addAll(newList);
-            }
+            resultList.addAll(getEmployeesForManager(employee, map));
         }
         return resultList;
     }
@@ -120,5 +118,41 @@ public class EmployeeManagerMapping {
         map.put("F","F");
 
         return map;
+    }
+
+    public static Map<String, List<String>> getManagerEmployeeMap(Map<String, String> employeeManagerMap) {
+        Map<String, List<String>> directManagerEmployeeMap = new HashMap<>();
+
+        for (Map.Entry<String, String> entry: employeeManagerMap.entrySet()) {
+            if (entry.getValue().compareTo(entry.getKey()) == 0 || entry.getValue() == null) continue;
+            directManagerEmployeeMap.putIfAbsent(entry.getValue(), new ArrayList<>());
+            directManagerEmployeeMap.get(entry.getValue()).add(entry.getKey());
+        }
+
+        Map<String, List<String>> resultMap = new HashMap<>();
+        for (Map.Entry<String, List<String>> entry: directManagerEmployeeMap.entrySet()) {
+            getEmployeesForManagerV3(entry.getKey(), directManagerEmployeeMap, resultMap);
+        }
+        return resultMap;
+    }
+
+    private static List<String> getEmployeesForManagerV3(String manager, Map<String, List<String>> directManagerEmployeeMap, Map<String, List<String>> resultMap) {
+        List<String> resultList = new ArrayList<>();
+        if (!directManagerEmployeeMap.containsKey(manager)) {
+            resultMap.put(manager, resultList);
+            return resultList;
+        }
+        if (resultMap.containsKey(manager)) { // DP
+            return resultMap.get(manager);
+        }
+
+        List<String> directEmployees = directManagerEmployeeMap.get(manager);
+        for (String directEmployee: directEmployees) {
+            resultList.add(directEmployee);
+            resultList.addAll(getEmployeesForManagerV3(directEmployee, directManagerEmployeeMap, resultMap));
+        }
+
+        resultMap.put(manager, resultList);
+        return resultList;
     }
 }

@@ -1,5 +1,6 @@
 package Hashing;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,9 @@ public class MinimumIndexedCharacter {
 
         System.out.println(getMinimumIndexedCharacter(str, patt));
         System.out.println(getMinimumIndexedCharacter(str1, patt1));
+
+        System.out.println(getMinimumIndexedCharacterV2(str, patt));
+        System.out.println(getMinimumIndexedCharacterV2(str1, patt1));
     }
 
     public static char getMinimumIndexedCharacter(String str, String patt)
@@ -38,5 +42,23 @@ public class MinimumIndexedCharacter {
         }
 
         return minIndex != Integer.MAX_VALUE ? patt.charAt(minIndex) : '\0';
+    }
+
+    public static char getMinimumIndexedCharacterV2(String string, String pattern) {
+        int[] charInfo = new int[256];
+        Arrays.fill(charInfo, -1);
+
+        for (int i = 0 ; i < string.length(); i++) {
+            if (charInfo[string.charAt(i)] == -1) {
+                charInfo[string.charAt(i)] = i;
+            }
+        }
+        int minIndex = Integer.MAX_VALUE;
+        for (int i = 0; i < pattern.length(); i++) {
+            if (charInfo[pattern.charAt(i)] != -1) {
+                minIndex = Math.min(minIndex, charInfo[pattern.charAt(i)]);
+            }
+        }
+        return minIndex != Integer.MAX_VALUE ? pattern.charAt(minIndex) : '\0';
     }
 }

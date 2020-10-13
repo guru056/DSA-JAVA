@@ -1,9 +1,6 @@
 package Hashing;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //https://www.geeksforgeeks.org/find-repeated-character-present-first-string/
 //https://www.geeksforgeeks.org/repeated-character-whose-first-appearance-is-leftmost/
@@ -13,6 +10,7 @@ public class RepeatedCharacterPresentFirstInString {
         String str = "geeksforgeeks";
         System.out.println(getRepeatedCharacterPresentFirst(str));
     }
+
     /**
      * Given a string, find the repeated character present first in the string.
      * Input  : geeksforgeeks
@@ -21,24 +19,24 @@ public class RepeatedCharacterPresentFirstInString {
      * @param str
      * @return
      */
-    public static char getRepeatedCharacterPresentFirst(String str)
-    {
-        Map<Character, Integer> map = new HashMap<>();
+    public static char getRepeatedCharacterPresentFirst(String str) {
+        int[] charInfo = new int[256];
 
+        Arrays.fill(charInfo, -1);
         int minIndex = Integer.MAX_VALUE;
-        char resultChar = '\0';
 
-        for (int i = 0; i < str.length(); i++) {
-            if (!map.containsKey(str.charAt(i))) {
-                map.put(str.charAt(i), i);
+        for (int i = 0 ; i < str.length(); i++) {
+            if (charInfo[str.charAt(i)] == -2) {
+                continue;
+            }
+            if (charInfo[str.charAt(i)] == -1) {
+                charInfo[str.charAt(i)] = i;
             } else {
-                int currIndex = map.get(str.charAt(i));
-                if (currIndex < minIndex) {
-                    minIndex = currIndex;
-                    resultChar = str.charAt(i);
-                }
+                minIndex = Math.min(minIndex, charInfo[str.charAt(i)]);
+                charInfo[str.charAt(i)] = -2;
             }
         }
-        return resultChar;
+
+        return minIndex != Integer.MAX_VALUE ? str.charAt(minIndex) : '\0';
     }
 }

@@ -18,8 +18,8 @@ public class ArraySubsetOfAnotherArray {
         int[] arr5 = {10, 5, 2, 23, 19};
         int[] arr6 = {19, 5, 3};
 
-        int[] arr7 = {2,2, 2};
-        int[] arr8 = {2, 2};
+        int[] arr7 = {1,2, 3};
+        int[] arr8 = {4};
 
         System.out.println(isSubset(arr1, arr2));
         System.out.println(isSubsetV2(arr1, arr2));
@@ -32,6 +32,10 @@ public class ArraySubsetOfAnotherArray {
         System.out.println(isSubset(arr5, arr6));
         System.out.println(isSubsetV2(arr5, arr6));
         System.out.println(isSubsetV3(arr5, arr6));
+
+        System.out.println(isSubset(arr7, arr8));
+        System.out.println(isSubsetV2(arr7, arr8));
+        System.out.println(isSubsetV3(arr7, arr8));
     }
 
     /**
@@ -86,7 +90,7 @@ public class ArraySubsetOfAnotherArray {
                 j++;
             }
         }
-        return (i < n) ? false : true;
+        return (j < n) ? false : true;
     }
 
     public static boolean isSubsetV3(int[] arr1, int[] arr2)

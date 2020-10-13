@@ -1,21 +1,24 @@
 package Hashing;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //https://www.geeksforgeeks.org/find-itinerary-from-a-given-list-of-tickets/
-class Route {
-    String source;
-    String destination;
-
-    public Route(String start, String destination) {
-        this.source = start;
-        this.destination = destination;
-    }
-}
 public class FindItinerary {
+
+    static class Route {
+        String source;
+        String destination;
+
+        public Route(String start, String destination) {
+            this.source = start;
+            this.destination = destination;
+        }
+
+        @Override
+        public String toString() {
+            return  source  + " --> " + destination ;
+        }
+    }
 
     public static void main(String[] args) {
         Map<String, String> dataSet = new HashMap<String, String>();
@@ -24,8 +27,7 @@ public class FindItinerary {
         dataSet.put("Goa", "Chennai");
         dataSet.put("Delhi", "Goa");
 
-        List<Route> result = getItinerary(dataSet);
-        printRouteList(result);
+        System.out.println(getItinerary(dataSet));
     }
     /**
      *  Input:
@@ -66,10 +68,4 @@ public class FindItinerary {
         return resultList;
     }
 
-    private static void printRouteList(List<Route> list)
-    {
-        for (Route r: list) {
-            System.out.println(r.source + "  -> " + r.destination);
-        }
-    }
 }
