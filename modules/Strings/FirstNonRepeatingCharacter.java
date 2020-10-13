@@ -1,21 +1,18 @@
 package Strings;
 
-class CharInfo
-{
-    char charVal;
-    int firstOccurrenceIndex;
-    int frequency;
-
-    public CharInfo(int firstOccurrenceIndex, int frequency) {
-        this.firstOccurrenceIndex = firstOccurrenceIndex;
-        this.frequency = frequency;
-        this.charVal = charVal;
-    }
-}
-
 //https://www.geeksforgeeks.org/given-a-string-find-its-first-non-repeating-character/
 public class FirstNonRepeatingCharacter {
 
+    static class CharInfo
+    {
+        int firstOccurrenceIndex;
+        int frequency;
+
+        public CharInfo(int firstOccurrenceIndex, int frequency) {
+            this.firstOccurrenceIndex = firstOccurrenceIndex;
+            this.frequency = frequency;
+        }
+    }
     public static void main(String[] args) {
         String str = "GeeksforGeeks";
         String str1 = "geeg";
