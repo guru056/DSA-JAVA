@@ -27,9 +27,9 @@ public class MaximumSumIncreasingSubsequence {
         int[] dp = new int[n];
         dp[0] = arr[0];
         int maxSum = 0;
-        for (int i = 1 ; i < n; i++){
+        for (int i = 1 ; i < n; i++) {
             int maxVal = 0;
-            for (int j = 0 ; j < i; j++){
+            for (int j = 0 ; j < i; j++) {
                 if (arr[j] < arr[i]){
                     maxVal = Math.max(maxVal, dp[j]);
                 }

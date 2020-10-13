@@ -16,8 +16,10 @@ public class LongestCommonSubsequence {
 //        String Y = "3399917206";
 //        String X = "AGGTAB";
 //        String Y = "GXTXAYB";
-        String X = "AATCC";
-        String Y = "ACACG";
+//        String X = "AATCC";
+//        String Y = "ACACG";
+        String X = "inmi";
+        String Y = "invi";
         printLongestCommonSubsequenceLength(X,Y);
     }
     public static void printLongestCommonSubsequenceLength(String X, String Y)

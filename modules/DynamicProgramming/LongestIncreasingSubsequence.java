@@ -15,6 +15,7 @@ public class LongestIncreasingSubsequence {
         System.out.println(lisDP(arr));
         System.out.println(getLisDP(arr));
         System.out.println(getLisDPV2(arr));
+        System.out.println(maxLisDPV2(arr));
     }
     /**
      *  3, 4, -1, 0, 2, 3
@@ -116,6 +117,30 @@ public class LongestIncreasingSubsequence {
             if (maxLisLength < list.size()){
                 resultList = new ArrayList<>(list);
                 maxLisLength = list.size();
+            }
+            list.clear();
+        }
+        return resultList;
+    }
+
+    //get all LIS with max length
+    public static List<List<Integer>> maxLisDPV2(int[] arr)
+    {
+        int n = arr.length;
+        int maxLisLength = lisDP(arr);
+
+        List<Integer> list = new ArrayList<>();
+        List<List<Integer>> resultList = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (arr[i] > arr[j]) {
+                    list.add(arr[j]);
+                }
+            }
+            list.add(arr[i]);
+            if ( list.size() == maxLisLength ) {
+                resultList.add(new ArrayList<>(list));
             }
             list.clear();
         }

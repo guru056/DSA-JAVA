@@ -9,7 +9,7 @@ public class MinimumSumPartition {
     public static int minimumSumPartitionRecursive(int[] arr, int n, int sumCalculated, int sumTotal)
     {
         if (n == 0)
-            Math.abs((sumTotal - sumCalculated) - sumCalculated);
+            return Math.abs((sumTotal - sumCalculated) - sumCalculated);
 
         return Math.min(
                 minimumSumPartitionRecursive(arr,n-1,sumCalculated,sumTotal),

@@ -1,8 +1,12 @@
 package DynamicProgramming;
 
 import Utils.ArrayUtils;
+import Utils.MapUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 
 //https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
@@ -20,6 +24,10 @@ public class MinimumNumberOfCoins {
 
         int[] coins2 = {8,7,7,7};
         int sum2 = 5;
+
+//        int coins3[] = {9, 6, 5, 1};
+//        int sum3 = 11;
+//        System.out.println(minCoinsGreedy(coins3,sum3));
         printMinCoins(coins2,sum2);
     }
 
@@ -27,6 +35,7 @@ public class MinimumNumberOfCoins {
     {
         System.out.println(minCoinsRecursive(coins, coins.length, sum));
         System.out.println(minCoinsDP(coins, sum));
+        System.out.println("=======");
     }
 
     public static int minCoinsGreedy(int[] coins, int sum)
@@ -37,7 +46,7 @@ public class MinimumNumberOfCoins {
 
         int i = 0 ;
         int numCoins = 0;
-        while (i < n && sum > 0){
+        while (i < n && sum > 0) {
             if (coins[i] <= sum){
                 numCoins += sum / coins[i];
                 sum =  sum % coins[i] ;
@@ -84,8 +93,9 @@ public class MinimumNumberOfCoins {
             for (int j = 0 ; j < n; j++)
             {
                 if (coins[j] <= i){
-                    int remainingSum = dp[i-coins[j]];
-                    if (remainingSum != Integer.MAX_VALUE && 1 + remainingSum < dp[i])
+                    int remainingSum = i-coins[j];
+                    int coinsForRemainingSum = dp[remainingSum];
+                    if (coinsForRemainingSum != Integer.MAX_VALUE && 1 + coinsForRemainingSum < dp[i])
                         dp[i] = 1 + remainingSum;
                 }
             }

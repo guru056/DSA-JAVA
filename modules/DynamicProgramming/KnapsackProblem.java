@@ -40,7 +40,7 @@ public class KnapsackProblem {
         }
         int weightExclusive = getMaxValueKnapsackRecursive(weight, value, W, n - 1);
 
-        if (weightInclusive == Integer.MIN_VALUE && weightExclusive == Integer.MAX_VALUE)
+        if (weightInclusive == Integer.MIN_VALUE && weightExclusive == Integer.MIN_VALUE)
             return 0;
         return Math.max(weightInclusive, weightExclusive);
     }
