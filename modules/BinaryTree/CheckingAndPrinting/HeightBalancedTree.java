@@ -4,11 +4,11 @@ import BinaryTree.BinaryTree;
 import BinaryTree.Node;
 import Utils.BinaryTreeUtils;
 
-class Height{
-    int height = 0;
-}
-
 public class HeightBalancedTree {
+
+    static class Height{
+        int height = 0;
+    }
 
     static int leftLevel;
     static int rightLevel;

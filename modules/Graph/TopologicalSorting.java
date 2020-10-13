@@ -4,8 +4,6 @@ import java.util.Stack;
 
 public class TopologicalSorting {
 
-
-
     public static void topologicalSort(Graph graph)
     {
         boolean[] visited = new boolean[graph.V];

@@ -78,6 +78,13 @@ public class LeastCommonAncestorInBinaryTree {
         return findLCARecursive(tree.root, n1, n2);
     }
 
+    /**
+     * If one node is found, we dont traverse the tree in this approach.
+     * @param node
+     * @param n1
+     * @param n2
+     * @return
+     */
     public static Node findLCARecursive(Node node, int n1, int n2)
     {
         if (node == null)

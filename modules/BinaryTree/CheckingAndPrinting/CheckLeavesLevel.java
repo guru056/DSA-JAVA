@@ -16,6 +16,16 @@ public class CheckLeavesLevel {
         printIfLeavesLevelAreSame(BinaryTree.getMockBinaryTreeV2());
         printIfLeavesLevelAreSame(BinaryTree.getMockBinaryTreeV3());
     }
+
+    /**
+     *           12
+     *         /    \
+     *       5       7
+     *     /          \
+     *    3            1
+     *   Leaves are at same level
+     * @param tree
+     */
     public static void printIfLeavesLevelAreSame(BinaryTree tree)
     {
         if (checkLeavesLevelRecursiveUtil(tree)){

@@ -1,32 +1,41 @@
 package LRUCache;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class LRU {
-    public final int CACHE_CAPACITY =  3;
-    public DoublyLinkedList dll;
-    public HashMap<Integer, Node> map;
-    public int currentSize ;
+public class LRU<K,V> {
+    private final int CACHE_CAPACITY =  3;
+    private DoublyLinkedList<K,V> dll;
+    private Map<K, Node<K,V>> map;
+    private int currentSize ;
 
     public LRU() {
         this.dll = new DoublyLinkedList();
-        this.map = new HashMap<Integer, Node>();
+        this.map = new HashMap<>();
         this.currentSize = 0;
     }
 
-    public int get(int key)
+    /**
+     * Returns value corresponding to key from cache.
+     * Returns null if key is not present
+     * Moves the node to the beginning of the list of key is present
+     * @param key
+     * @return
+     */
+    public V get(K key)
     {
-        Node node = this.map.get(key);
+        Node<K,V> node = this.map.get(key);
         if (node != null){
             this.dll.moveToFirst(node);
             return node.getData();
         }
         System.out.println("[MISS] for cache key : " + key);
-        return -1;
+        return null;
     }
 
     /**
      * if map has key present
+     *  - update the value
      *  - Move node to first
      * if map does not have key present
      *  - If current capacity is less than cache capacity
@@ -41,31 +50,34 @@ public class LRU {
      * @param key
      * @param value
      */
-    public void set(int key, int value)
+    public void set(K key, V value)
     {
-        Node node = this.map.get(key);
+        Node<K,V> node = this.map.get(key);
         if (node != null){
+            node.setData(value);
+            this.map.put(key, node);
             this.dll.moveToFirst(node);
-//            this.map.put(key, this.dll.getHead()); //not needed
             return;
         }
 
-        if (this.currentSize < this.CACHE_CAPACITY){
-            Node newNode = new Node(key,value);
-            this.dll.insertAtFirst(newNode);
-            this.map.put(key,this.dll.getHead());
-            this.currentSize++;
-            return;
+        Node<K,V> newNode = new Node(key,value);
+        if (this.currentSize >= this.CACHE_CAPACITY) {
+            this.map.remove(this.dll.getTail().getKey());
+            this.dll.removeLastNode();
         }
 
-        Node newNode = new Node(key, value);
-        Node tail = this.dll.getTail();
-        this.dll.removeLastNode();
-        this.map.remove(tail.getKey());
         this.dll.insertAtFirst(newNode);
         this.map.put(key,this.dll.getHead());
+        this.incrementSize();
         return;
 
+    }
+
+    private void incrementSize()
+    {
+        if (this.currentSize < this.CACHE_CAPACITY) {
+            this.currentSize++;
+        }
     }
 
 

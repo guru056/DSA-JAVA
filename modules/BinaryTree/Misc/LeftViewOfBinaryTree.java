@@ -33,8 +33,6 @@ public class LeftViewOfBinaryTree {
 
         while (!queue.isEmpty()){
             nodeCount = queue.size();
-//            if (nodeCount == 0)
-//                break;
             System.out.print(queue.peek().data + " ");
             while (nodeCount-- > 0){
                 node = queue.poll();

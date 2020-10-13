@@ -1,7 +1,5 @@
 package Utils;
 
-import java.util.*;
-
 public class ArrayUtils {
 
 	public static void printArr(int[] arr){

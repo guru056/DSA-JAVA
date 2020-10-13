@@ -22,8 +22,9 @@ static int k = 2;
 //        if (node.data == searchNode)
 //            return true;
         if (node.data == searchNode || kthAncestorRecursive(node.left, searchNode)  || kthAncestorRecursive(node.right, searchNode) ){
-            if (k > 0)
+            if (k > 0){
                 k--;
+            }
             else if(k == 0) {
                 System.out.println(node.data);
                 return false;

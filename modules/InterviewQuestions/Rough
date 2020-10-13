@@ -1,0 +1,315 @@
+You are given an array of boxes in front of you, kept in a straight line and each box has some amount of candies in it.
+You are allowed to take candies from any box but you cannot take candies from 2 adjecent boxes.
+What is the maximum amount of candies you can get from these boxes?
+
+Sample input 1:
+	[1,2,3,1]
+Output:
+	4 - you pick 1st box with 1 candy, then 3rd box with 3 candies. So, total candies = 1 + 3 = 4
+
+Sample input 2:
+	[2,7,9,3,1]
+Output:
+  12 - you pick 1st box, then 3rd, then 5th. total candies = 2 + 9 + 1 = 12
+
+
+
+  public int getMaxCandies(int[] arr)
+  {
+
+  }
+
+  public int getMaxCandiesRecursive(int[] arr, int n)
+  {
+
+  }
+  f(arr, n ) = max( arr[n] + f(arr, n-2) , f(arr, n-1);
+             = 0, n == 0
+             = arr[n], n== 1
+
+            	[1,2,3,1]
+
+             dp[0] = 0;
+             dp[1] = arr[0]
+
+             dp[i] = Math.max(dp[i-1], arr[i-1] +
+ dp[i-2])
+ 						dp = new int[5];
+ 						dp[0] = 0
+            dp[1] = 1;
+            dp[2] = Math.max(arr[2-1] + dp[i-2], dp[i-1]) = Math.max(2 + 0, 1) = 2
+            dp[3] = Math.max(dp[2], arr[2] + dp[1]) = max(2, 3 + 1) = 4
+            dp[4] = Math.max(dp[3], dp[2] + 1) = max(4, 3) = 4
+
+
+
+
+
+
+ public int getMaxCandies(int[] arr)
+  {
+  	int n = arr.length;
+    if(n == 0 ) return 0;
+    if(n == 1) return arr[0];
+
+    int[] dp = new int[n+1];
+
+    dp[0] = 0;
+    dp[1] = arr[0];
+
+    for(int i = 2; i <= n-1; i++) {
+    	dp[i] = Math.max(dp[i-1], arr[i-1] +
+ dp[i-2]);
+    }
+    int max1 = dp[n-1];
+
+    Arrays.fill(dp,0);
+    dp[1] = 0;
+     for(int i = 2; i <= n; i++) {
+    	dp[i] = Math.max(dp[i-1], arr[i-1] +
+ dp[i-2]);
+    }
+    return Math.max(max1, dp[n]);
+
+  }
+
+
+
+ [10,2,3,7] 13
+  [10,7,3,7] 14
+ [10,2,3,5,6,7]
+
+   f(arr, n ) = max( arr[n] + f(arr, n-2) , f(arr, n-1);
+             = 0, n == 0
+             = arr[n], n== 1
+             =
+
+             [10,7,3,7]
+
+             dp[0] = 0
+             dp[1] = 10
+             dp[2] = 10
+             dp[3] = 13
+
+             dp[0] = 0;
+             dp[1] = 0;
+             dp[2] = 7
+             dp[3] = 7
+             dp[4] = 14
+
+
+
+
+
+// Given a Binary search tree, find the kth smallest element.
+
+static int counter = 0;
+static int kthSmallest = Integer.MAX_VALUE:
+public void kthSmallest(Node node, int k)
+{
+	if(node == null)
+  	return;
+
+   kthSmallest(node.left, k );
+   counter++;
+   if(counter == k)
+     kthSmallest = node.data;
+
+   kthSmallest(node.right, k );
+}
+
+===============================================================================
+Given an array of positive numbers, where each element represents the max number of jumps that can be made forward from that element,
+write a program to find the minimum number of jumps needed to reach the end of the array (starting from the first element).
+
+{2,1,1,1,4}
+3
+
+{2,5,"4,2,1,3,1",1,3,7}
+2=>5
+5=>
+i
+k: max(arr[j]+j)
+
+dp[0] = -1 ? arr[0] == 0 : 0
+
+dp[i] = Integer.MAX_VALUE
+
+i = 1 to n
+dp[i] = j = i - 1 to 0
+			 -> j + arr[j] >=  i
+       -> dp[j] != Inter.MAX_VLAUE
+     dp[i]  -> min(dp[i], 1 + dp[j])
+
+return dp[n-1]
+
+
+int getMinJumps(int[] arr)
+{
+	int n = arr.length;
+
+  if (n == 0 || arr[0] == 0)
+  	return Integer.MAX_VALUE;
+
+  int[] dp = new int[n];
+
+  Arrays.fill(dp, Integer.MAX_VALUE);
+  dp[0] = 0;
+  int j;
+
+  for(int i = 1 ; i < n; i++) {
+  		j = i - 1;
+      while(j >= 0 ) {
+      		if (j + arr[j] >= i && dp[j] != Integer.MAX_VALUE) {
+          		dp[i] = Math.min(dp[i], 1 + dp[j]);
+          }
+					j--
+      }
+  }
+  return dp[n-1];
+}
+
+
+
+{2,1,1,1,4}
+
+{2,2,0,1,4}
+
+step
+
+{3,2,1,1,0,4}
+{3,2,1,2,0,4}
+
+===================================================================================
+Design the gate that allows passenger to enter a metro station
+CardHelper.validateCard(Card card)
+Returns true or false
+
+
+Gate {
+		Private final MINIMUM_PASSING_TIME = 5 ; // secs
+  		private Status status;
+		Private Date lastCardProcessedTimestamp;
+		Private Card lastCard;
+		Private int remainingSecs;
+		Private Status lastCardStaus;
+
+
+  //singleton
+  public Gate() {
+		  this.card
+  }
+
+ public boolean checkAuthorization(Card card)
+{
+	if(this.lastCard.euqals(card) && this.lastCardProcessedTimestamp - System.currentMillis() < MIN_THRESHOLD) {
+
+	// initiate the remaining secs to THRESHOLD
+}
+	Boolean status = CardHelper.validateCard(Card card);
+	if(!status) {
+Return false;
+}
+Status = Status.OPEN;
+//initiate the remaining secs to THRESHOLD
+ }
+
+Private void passThroughSensor(Action action) { // pass in or pass out
+
+}
+
+
+
+}
+
+Card {
+	Private String id;
+  	Private CardType type;
+
+  public Card(String cardId) {
+  		this.id = cardId;
+     		 this.type = type;
+  }
+
+
+}
+
+enum CardType{
+	CARD,
+  TOKEN
+}
+
+enum Status {
+	OPEN,
+  CLOSE
+}
+
+
+
+
+Design a movie ticket booking system
+Given movie, venue
+App Screens - 1. Slots 2. Seats 3. Payment 4. Ticket
+Movie, theatres, shows
+APIs
+GET baseUrl/v1/get-shows/{movieId}/{theatreId} -- slots
+GET /v1/get-seats/{showID}
+POST /v1/select-seats/  -- showId, seatIds[]
+GET /v1/get-payment-methods.  userId
+POST v1/make-payment
+GET v1/ticket/{orderId}
+
+Microservices
+
+Slots service ,
+-- No action taken
+-- Payment is  made successfully -- in one go
+-- payment was made but it eventually  failed.
+
+Payments service
+Order service
+Tickets service
+
+Databases
+
+============================================================================
+Generic on-boarding process
+
+/v1/get-o2-details/{resId}/2/2 -
+{
+	“doc”
+}
+3
+
+id
+countryId
+serviceType
+docId
+supportingDocRequired
+reuqiredFlag
+isAutoVerificationSupported
+updatedBy
+
+Metadata
+Id
+
+
+documentTypes
+docId
+Name
+
+
+validationConfig -- code
+
+Third party verification
+
+Revenue
+
+---------------------------------------
+
+Onboarding_phases
+Phase 1
+
+
+
+

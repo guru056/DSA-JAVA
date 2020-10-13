@@ -22,11 +22,9 @@ public class LevelOrderTraversalLineByLine {
         queue.add(tree.root);
         int nodeCount ;
 
-        while (true){
+        while (!queue.isEmpty()){
             nodeCount = queue.size();
-            if (nodeCount == 0)
-                break;
-            while (nodeCount > 0){
+            while (nodeCount-- > 0){
                 Node node = queue.poll();
                 System.out.print(node.data + " ");
                 if (node.left != null){
@@ -35,7 +33,6 @@ public class LevelOrderTraversalLineByLine {
                 if (node.right != null){
                     queue.add(node.right);
                 }
-                nodeCount--;
             }
             System.out.println();
         }

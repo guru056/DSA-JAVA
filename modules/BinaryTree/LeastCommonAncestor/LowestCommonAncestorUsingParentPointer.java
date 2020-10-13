@@ -3,15 +3,16 @@ package BinaryTree.LeastCommonAncestor;
 import java.util.HashSet;
 
 //https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
-class Node{
-    int data;
-    Node left, right, parent;
-    public Node(int data){
-        this.data = data;
-        this.left = this.right = this.parent = null;
-    }
-}
 public class LowestCommonAncestorUsingParentPointer {
+
+    static class Node {
+        int data;
+        Node left, right, parent;
+        public Node(int data){
+            this.data = data;
+            this.left = this.right = this.parent = null;
+        }
+    }
 
     public static void main(String[] args) {
         Node root = new Node(1);

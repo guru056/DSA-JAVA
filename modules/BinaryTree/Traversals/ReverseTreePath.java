@@ -35,12 +35,11 @@ public class ReverseTreePath {
     {
         if (node == null)
             return null;
+        map.put(level, node.data);
         if (node.data == searchNode){
-            map.put(level, node.data);
             node.data = map.get(nextPos++);
             return node;
         }
-        map.put(level, node.data);
         Node left,right = null;
         left = reverseTreePathRecursive(node.left, searchNode, level + 1, map);
         if (left == null){

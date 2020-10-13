@@ -1,7 +1,11 @@
 package BinaryTree.LeastCommonAncestor;
 
 import BinaryTree.BinaryTree;
+import BinaryTree.CheckingAndPrinting.PrintPathFromRootToGivenNode;
 import BinaryTree.Node;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //https://www.geeksforgeeks.org/print-ancestors-of-a-given-node-in-binary-tree/
 //https://www.geeksforgeeks.org/print-path-common-two-paths-root-two-given-nodes/
@@ -14,12 +18,21 @@ public class PrintAncestorsOfGivenNode {
         }
     }
 
+    //this is same as printing path from root to node.
     public static void printAncestors(BinaryTree tree, int searchNode)
     {
         System.out.println("Ancestors of " + searchNode + " : ");
         boolean x = printAncestorsRecursive(tree.root, searchNode);
+        ArrayList<Node> list = new ArrayList<Node>();
+        List<Integer> resultList = new ArrayList<>();
+        PrintPathFromRootToGivenNode.printPathFromRootToNodeRecursiveV2(tree.root, searchNode,list);
+        for (Node n: list) {
+            resultList.add(n.data);
+        }
+        System.out.println(resultList);
         System.out.println();
         System.out.println();
+
     }
 
     public static boolean printAncestorsRecursive(Node node, int searchNode)

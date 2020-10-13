@@ -19,14 +19,13 @@ public class ZigZagTraversal {
         tree.root.right.right = new Node(7);
 
         printZigZagTraversal(tree);
-
     }
 
-    public static void printZigZagTraversal( BinaryTree tree)
-    {
+    public static void printZigZagTraversal(BinaryTree tree) {
         List<List<Integer>> resultList = zigzagLevelOrder(tree.root);
         System.out.println(resultList);
     }
+
     public static List<List<Integer>> zigzagLevelOrder(Node root) {
         List<List<Integer>> resultList = new ArrayList<>();
 
@@ -36,29 +35,28 @@ public class ZigZagTraversal {
         Stack<Node> st2 = new Stack<>();
 
         st1.add(root);
-        while (!st1.isEmpty() || !st2.isEmpty())
-        {
+        while (!st1.isEmpty() || !st2.isEmpty()) {
             List<Integer> list1 = new ArrayList<>();
             List<Integer> list2 = new ArrayList<>();
-            while (!st1.isEmpty()){
+            while (!st1.isEmpty()) {
                 Node node = st1.pop();
                 list1.add(node.data);
-                if (node.left != null){
+                if (node.left != null) {
                     st2.push(node.left);
                 }
-                if (node.right != null){
+                if (node.right != null) {
                     st2.push(node.right);
                 }
             }
             if (list1.size() > 0)
                 resultList.add(list1);
-            while (!st2.isEmpty()){
+            while (!st2.isEmpty()) {
                 Node node = st2.pop();
                 list2.add(node.data);
-                if (node.right != null){
+                if (node.right != null) {
                     st1.push(node.right);
                 }
-                if (node.left != null){
+                if (node.left != null) {
                     st1.push(node.left);
                 }
             }

@@ -10,4 +10,17 @@ public class StringUtils {
 
         return new String(charArr);
     }
+    public static String swapSubstring(String str, int begin, int end) {
+        char[] charArr = str.toCharArray();
+        int s = begin;
+        int e = end;
+        while (s < e) {
+            char temp = charArr[s];
+            charArr[s] = charArr[e];
+            charArr[e] = temp;
+            s++;
+            e--;
+        }
+        return new String(charArr).substring(begin, end+1);
+    }
 }

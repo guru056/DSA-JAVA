@@ -22,8 +22,8 @@ public class DetectCycleInDirectedGraph {
     {
         if (recStack[currentNode])
             return true;
-//        if (visited[currentNode])
-//            return false;
+        if (visited[currentNode])
+            return false;
         visited[currentNode] = true;
         recStack[currentNode] = true;
 

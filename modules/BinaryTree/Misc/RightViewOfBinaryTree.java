@@ -32,10 +32,8 @@ public class RightViewOfBinaryTree {
         queue.add(tree.root);
         Node node = null;
 
-        while (true){
+        while (!queue.isEmpty()){
             nodeCount = queue.size();
-            if (nodeCount == 0)
-                break;
             while (nodeCount-- > 0){
                 node = queue.poll();
                 if (node.left != null){

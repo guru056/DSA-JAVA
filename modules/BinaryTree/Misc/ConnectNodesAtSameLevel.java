@@ -10,21 +10,21 @@ import java.util.Queue;
 //https://www.geeksforgeeks.org/connect-nodes-level-level-order-traversal/
 //https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 //https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
-class Node {
-    int data;
-    Node left;
-    Node right;
-    Node nextRight;
-
-    public Node(int data)
-    {
-        this.data = data;
-        this.left = this.right = this.nextRight = null;
-    }
-}
 
 public class ConnectNodesAtSameLevel {
 
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+        Node nextRight;
+
+        public Node(int data)
+        {
+            this.data = data;
+            this.left = this.right = this.nextRight = null;
+        }
+    }
 
     public static void connectNodesAtSameLevel(Node root)
     {
@@ -117,7 +117,7 @@ public class ConnectNodesAtSameLevel {
     }
 
     /**
-     * BFS Approach
+     * BFS Approach [BEST]
      */
     public static void connectNodesIterative(Node root)
     {
