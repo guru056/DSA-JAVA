@@ -1,13 +1,11 @@
 package Arrays.OptimizationProblems;
 
-import Utils.ArrayUtils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ContigousSubArraysWithGivenSum {
+public class SubArraysWithGivenSum {
 
     static class Pair {
         int i;
@@ -17,7 +15,6 @@ public class ContigousSubArraysWithGivenSum {
             this.i = i;
             this.j = j;
         }
-
     }
 
     public static void main(String[] args) {
@@ -128,14 +125,8 @@ public class ContigousSubArraysWithGivenSum {
                     resultList.add(new Pair(j + 1, i));
                 }
             }
-            List<Integer> l;
-            if (map.containsKey(localSum)) {
-                l = map.get(localSum);
-            } else {
-                l = new ArrayList<>();
-            }
-            l.add(i);
-            map.put(localSum, l);
+            map.putIfAbsent(localSum, new ArrayList<>());
+            map.get(localSum).add(i);
         }
         return resultList;
     }

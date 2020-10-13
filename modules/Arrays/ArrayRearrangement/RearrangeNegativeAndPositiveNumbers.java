@@ -11,15 +11,18 @@ public class RearrangeNegativeAndPositiveNumbers {
         int[] arr = {12, 11, -13, -5, 6, -7, 5, -3, -6};
 
         //All negative numbers first and then positive numbers
-        rearrange(arr);
-        ArrayUtils.printArr(arr);
-        rearrangeV2(arr);
+//        rearrangeNegativePositive(arr);
+//        ArrayUtils.printArr(arr);
+        rearrangeNegativePositiveV2(arr);
         ArrayUtils.printArr(arr);
 
         //All positive numbers first and then negative numbers
-        rearrangeV3(arr);
+        rearrangePositiveNegative(arr);
         ArrayUtils.printArr(arr);
-        rearrangeV4(arr);
+        rearrangePositiveNegativeV2(arr);
+        ArrayUtils.printArr(arr);
+//
+        rearrangePositiveNegativeV3(arr);
         ArrayUtils.printArr(arr);
     }
 
@@ -42,7 +45,7 @@ public class RearrangeNegativeAndPositiveNumbers {
     }
 
     //if order of elements is not important
-    public static void rearrange(int[] arr)
+    public static void rearrangeNegativePositive(int[] arr)
     {
         int n = arr.length;
         int i = -1;
@@ -55,7 +58,7 @@ public class RearrangeNegativeAndPositiveNumbers {
     }
 
     //if order of elements is to be maintained
-    public static void rearrangeV2(int[] arr)
+    public static void rearrangeNegativePositiveV2(int[] arr)
     {
         int n = arr.length;
         for (int i = 0 ; i < n; i++){
@@ -71,7 +74,7 @@ public class RearrangeNegativeAndPositiveNumbers {
         }
     }
 
-    public static void rearrangeV3(int[] arr)
+    public static void rearrangePositiveNegative(int[] arr)
     {
         int n = arr.length;
         int i = -1;
@@ -83,7 +86,7 @@ public class RearrangeNegativeAndPositiveNumbers {
         }
     }
 
-    public static void rearrangeV4(int[] arr)
+    public static void rearrangePositiveNegativeV2(int[] arr)
     {
         int n = arr.length;
         for (int i = 0 ; i < n; i++){
@@ -96,6 +99,56 @@ public class RearrangeNegativeAndPositiveNumbers {
                 j--;
             }
             arr[j + 1] = key;
+        }
+    }
+
+    //NlogN solution
+    public static void rearrangePositiveNegativeV3(int[] arr)
+    {
+        mergePositiveNegativeRecursive(arr, 0, arr.length-1);
+    }
+    public static void mergePositiveNegativeRecursive(int[] arr, int low, int high)
+    {
+        if (low >= high)
+            return;
+        int mid = ( low + high ) / 2;
+        mergePositiveNegativeRecursive(arr, low, mid);
+        mergePositiveNegativeRecursive(arr, mid + 1, high);
+        merge(arr,low,mid,high);
+    }
+
+    public static void merge(int[] arr, int low, int mid, int high)
+    {
+        int m = mid - low + 1;
+        int n = high - mid;
+
+        int[] left = new int[m];
+        int[] right = new int[n];
+
+        for (int i = low,k=0; i <= mid; i++,k++) {
+            left[k] = arr[i];
+        }
+        for (int i = mid+1,k=0; i <= high; i++,k++) {
+            right[k] = arr[i];
+        }
+
+        int i = 0;
+        int j = 0;
+        int k = low;
+        while (i < m && j < n) {
+            if (left[i] >= 0) {
+                arr[k++] = left[i++];
+            } else if (right[j] >= 0) {
+                arr[k++] = right[j++];
+            } else{
+                break;
+            }
+        }
+        while (i < m) {
+            arr[k++] = left[i++];
+        }
+        while (j < n) {
+            arr[k++] = right[j++];
         }
     }
 }

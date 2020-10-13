@@ -11,13 +11,12 @@ public class NutsAndBoltsProblem {
 
     public static void main(String[] args) {
         char[] nuts = {'@', '#', '$', '%', '^', '&'};
-        char bolts[] = {'$', '%', '&', '^', '@', '#'};
+        char[] bolts = {'$', '%', '&', '^', '@', '#'};
         nutsAndBolts(nuts, bolts);
     }
 
     public static void nutsAndBolts(char[] nuts, char[] bolts)
     {
-        int n = nuts.length;
         Map<Character, Integer> map = new HashMap<>();
 
         for (int i  = 0 ; i < nuts.length; i++) {

@@ -13,6 +13,7 @@ public class TrappingRainWater {
         int[] arr5 = {1, 7, 5};
         int[] arr6 = {0, 7, 1, 4, 6};
         int[] arr7 = {6,8,5,0,0,6,5};
+        int[] arr8 = {1,2,3,2,1};
 
         printTrappedWaterUnits(arr);
         printTrappedWaterUnits(arr1);
@@ -22,6 +23,7 @@ public class TrappingRainWater {
         printTrappedWaterUnits(arr5);
         printTrappedWaterUnits(arr6);
         printTrappedWaterUnits(arr7);
+        printTrappedWaterUnits(arr8);
 
     }
 
@@ -56,6 +58,12 @@ public class TrappingRainWater {
         return waterTrapped;
     }
 
+    /**
+     * The basic idea is that water can be stored at building i only if there are buildings of
+     * greater height on both of its sides.
+     * @param arr
+     * @return
+     */
     public static int getTrappedWaterV2(int[] arr)
     {
         int n = arr.length;
@@ -65,7 +73,7 @@ public class TrappingRainWater {
         int rightMax = 0;
         int trappedWater = 0;
 
-        while (left <= right) {
+        while (left < right) {
             if (arr[left] < arr[right]) {
                 if (arr[left] > leftMax) {
                     leftMax = arr[left];

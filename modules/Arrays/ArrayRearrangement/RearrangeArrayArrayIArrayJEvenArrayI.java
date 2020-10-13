@@ -7,9 +7,11 @@ import java.util.Arrays;
 public class RearrangeArrayArrayIArrayJEvenArrayI {
 
 //    https://www.geeksforgeeks.org/rearrange-array-arri-arrj-even-arri/
-   /* Given an array of n elements. Our task is to write a program to rearrange the array such that
-    elements at even positions are greater than all elements before it and
-    elements at odd positions are less than all elements before it.*/
+   /**
+    *  Given an array of n elements. Our task is to write a program to rearrange the array such that
+    * elements at even positions are greater than all elements before it and
+    * elements at odd positions are less than all elements before it.
+    */
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7};
         int[] arr1 = {1, 2, 1, 4, 5, 6, 8, 8};

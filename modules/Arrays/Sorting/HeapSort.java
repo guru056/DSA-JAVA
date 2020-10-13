@@ -1,6 +1,6 @@
 package Arrays.Sorting;
 
-import Heaps.HeapUtils;
+import Utils.HeapUtils;
 import Utils.ArrayUtils;
 
 public class HeapSort {

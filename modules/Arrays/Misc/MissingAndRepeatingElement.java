@@ -8,12 +8,20 @@ public class MissingAndRepeatingElement {
         int[] arr = {3, 1, 3};
         int[] arr1 = {4, 3, 6, 2, 1, 1};
         int arr2[] = { 7, 3, 4, 5, 5, 6, 2 };
+        int[] arr3 = {1,1,2,4};
 
         printMissingAndRepeatingElement(arr);
         printMissingAndRepeatingElement(arr1);
         printMissingAndRepeatingElement(arr2);
+        printMissingAndRepeatingElement(arr3);
     }
 
+    /**
+     * Given an unsorted array of size n. Array elements are in the range from 1 to n.
+     * One number from set {1, 2, …n} is missing and one number occurs twice in the array.
+     * Find these two numbers.
+     * @param arr
+     */
     public static void printMissingAndRepeatingElement(int[] arr)
     {
         int[] result = getMissingAndRepeatingElement(arr);

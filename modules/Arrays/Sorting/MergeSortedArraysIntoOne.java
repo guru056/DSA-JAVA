@@ -54,7 +54,8 @@ public class MergeSortedArraysIntoOne {
      */
     public static void mergeArrays(int[] arr1, int[] arr2, int m, int n)
     {
-        moveZeroesToBeginning(arr1,m);
+//        moveNonZeroesToEnd(arr1,n);
+        moveNonZeroesToEnd(arr1, arr2);
         int i = n;
         int j = 0;
         int k = 0;
@@ -72,14 +73,29 @@ public class MergeSortedArraysIntoOne {
         }
     }
 
-    private static void moveZeroesToBeginning(int[] arr, int m)
+    /**
+     *
+     * @param arr
+     * @param n
+     */
+    private static void moveNonZeroesToEnd(int[] arr, int n)
     {
-        int n = arr.length;
-        int i = n-1;
-        int count = n  - m;
-        while (i -count >= 0) {
-            arr[i] = arr[i - count];
+        int mPlusN = arr.length;
+        int i = mPlusN - 1;
+        while (i - n >= 0) {
+            arr[i] = arr[i - n];
             i--;
+        }
+    }
+
+    private static void moveNonZeroesToEnd(int[] arr1, int[] arr2) {
+        int mPLusN = arr1.length;
+        int N = arr2.length;
+
+        int iterator = mPLusN - 1;
+        while (iterator - N >= 0) { // this loop runs M times (M is non zero values in arr1)
+            arr1[iterator] = arr1[iterator - N];
+            iterator--;
         }
     }
 }

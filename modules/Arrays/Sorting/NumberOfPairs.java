@@ -1,6 +1,5 @@
 package Arrays.Sorting;
 
-import Arrays.Searching.BinarySearch;
 import Arrays.SearchingProblems.FloorAndCeilInASortedArray;
 
 import java.util.Arrays;
@@ -28,21 +27,21 @@ public class NumberOfPairs {
     public static int getNumberOfPairs(int[] X, int[] Y)
     {
         int m = X.length;
-        Arrays.sort(Y);
+        Arrays.sort(Y); // O(NLogN)
         int[] count = new int[5];
         for (int i = 0 ; i < count.length; i++) {
-            count[i] = getZeroesCountInSortedArray(Y, i);
+            count[i] = getElementCountInSortedArray(Y, i); // O(logN)
         }
         int result = 0;
 
-        for (int i = 0 ; i < m; i++) {
+        for (int i = 0 ; i < m; i++) { // O(MLogN)
             if (X[i] == 0)
                 continue;
             if (X[i] == 1) {
                 result += count[0];
                 continue;
             }
-            int upperBound = getUpperBound(Y, X[i]);
+            int upperBound = FloorAndCeilInASortedArray.findStrictCeilUtil(Y, X[i]);
             if (upperBound != -1) {
                 result += (m - upperBound + count[0] + count[1]);
             }
@@ -58,28 +57,49 @@ public class NumberOfPairs {
         return result;
     }
 
-    public static int getUpperBound(int[] arr, int key)
+    /** Get Element Count in a sorted array in O(LogN) time
+     * @param arr
+     * @param key
+     * @return
+     */
+    public static int getElementCountInSortedArray(int[] arr, int key)
     {
-        int index = FloorAndCeilInASortedArray.findCeilUtil(arr, key);
-        if (index == -1)
-            return -1;
-        if (arr[index] != key)
-            return index;
-        while (index < arr.length && arr[index] == key)
-            index++;
-        return index == arr.length ? -1 : index;
+        int firstOccurrence = getFirstOccurrence(arr, 0, arr.length-1, key);
+        if (firstOccurrence == -1)
+            return 0;
+
+        int lastOccurrence = getLastOccurrence(arr, 0, arr.length- 1,key);
+        return lastOccurrence - firstOccurrence + 1;
     }
 
-    public static int getZeroesCountInSortedArray(int[] arr, int key)
-    {
-        int index = BinarySearch.binarySearchUtil(arr, key);
-        if (index == -1)
-            return 0;
-        int lastOccurrence = index;
-        while (lastOccurrence < arr.length && arr[lastOccurrence] == key)
-        {
-            lastOccurrence++;
+    public static int getFirstOccurrence(int[] arr, int begin, int end, int key) {
+        if (begin > end) return -1;
+        int mid = (begin + end) / 2;
+
+        if (key > arr[mid]) {
+            return getFirstOccurrence(arr, mid+1,end, key);
+        } else if (key < arr[mid]) {
+            return getFirstOccurrence(arr, begin, mid - 1, key);
+        } else if (mid == 0 || arr[mid - 1] != key) {
+            return mid;
+        } else {
+            return getFirstOccurrence(arr, begin, mid - 1, key);
         }
-        return lastOccurrence - index ;
     }
+
+    public static int getLastOccurrence(int[] arr, int begin, int end, int key) {
+        if (begin > end) return -1;
+        int mid = (begin + end) / 2;
+
+        if (key > arr[mid]) {
+            return getLastOccurrence(arr, mid+1,end, key);
+        } else if (key < arr[mid]) {
+            return getLastOccurrence(arr, begin, mid - 1, key);
+        } else if (mid == arr.length-1 || arr[mid + 1] != key) {
+            return mid;
+        } else {
+            return getLastOccurrence(arr, mid+1, end, key);
+        }
+    }
+
 }

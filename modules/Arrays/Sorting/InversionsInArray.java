@@ -13,8 +13,9 @@ public class InversionsInArray {
         int[] arr1 = {3, 1, 2};
         int[] arr2 = {1, 2};
 
-//        System.out.println(countInversions(arr));
-//        System.out.println(countInversions(arr1));
+        System.out.println(countInversions(arr));
+        System.out.println(countInversions(arr1));
+        System.out.println(countInversions(arr2));
 
         System.out.println(countInversionsV2(arr));
         System.out.println(countInversionsV2(arr1));
@@ -23,27 +24,28 @@ public class InversionsInArray {
 
     public static int countInversions(int[] arr)
     {
-        int maxVal = ArrayUtils.getMaximum(arr) + 1;
-        return countInversionsRecursive(arr, 0, arr.length - 1, maxVal);
+//        int maxVal = ArrayUtils.getMaximum(arr) + 1;
+        return countInversionsRecursive(arr, 0, arr.length - 1);
     }
 
-    public static int countInversionsRecursive(int[] arr, int begin, int end, int maxVal)
+    public static int countInversionsRecursive(int[] arr, int begin, int end)
     {
         if (begin >= end)
             return 0;
         int mid = (begin + end) / 2;
-        int countLeft = countInversionsRecursive(arr, begin, mid, maxVal);
-        int countRight = countInversionsRecursive(arr, mid + 1 , end, maxVal);
-        int countMerged = merge(arr, begin, mid, end, maxVal);
+        int countLeft = countInversionsRecursive(arr, begin, mid);
+        int countRight = countInversionsRecursive(arr, mid + 1 , end);
+        int countMerged = merge(arr, begin, mid, end);
         return countLeft + countRight + countMerged;
     }
 
-    public static int merge(int[] arr, int begin, int mid, int end, int maxVal)
+    public static int merge(int[] arr, int begin, int mid, int end)
     {
         int i = begin;
         int j = mid + 1;
         int k = begin;
         int inversionCount = 0;
+        int maxVal = Math.max(arr[mid], arr[end]) + 1;
 
         while (i <= mid && j <= end) {
             if (arr[i] % maxVal <= arr[j] % maxVal) {

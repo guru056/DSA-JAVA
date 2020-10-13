@@ -2,7 +2,7 @@ package Arrays.SearchingProblems;
 
 import Utils.ArrayUtils;
 
-public class FIndTwoRepeatingElements {
+public class FindTwoRepeatingElements {
 
 //    https://www.geeksforgeeks.org/find-the-two-repeating-elements-in-a-given-array/
     public static void main(String[] args) {

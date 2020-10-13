@@ -9,7 +9,7 @@ public class SelectionSort {
         ArrayUtils.printArr(arr);
     }
 
-    public static void selectionSort(int[] arr){
+    public static void selectionSort(int[] arr) {
         int n = arr.length;
 
         for ( int i = 0; i < n - 1; i++){
@@ -20,7 +20,7 @@ public class SelectionSort {
         }
     }
 
-    private static int findMinIndex(int[] arr, int start, int end){
+    private static int findMinIndex(int[] arr, int start, int end) {
         int min_index  = start;
         for (int i = start + 1; i <= end; i++){
             if (arr[i] < arr[min_index]){

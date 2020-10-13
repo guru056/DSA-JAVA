@@ -7,7 +7,7 @@ public class LeadersInArray {
         printLeaders(arr);
     }
 
-    public static void printLeaders(int[] arr){
+    public static void printLeaders(int[] arr) {
         int max = Integer.MIN_VALUE;
         System.out.print("Leaders: ");
         for (int i = arr.length - 1; i  >= 0; i--){

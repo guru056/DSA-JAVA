@@ -35,56 +35,6 @@ public class BooleanMatrixPuzzle {
 
     }
 
-    public static void setMatrixZeroes(int[][] mat)
-    {
-        int m = mat.length;
-        int n = mat[0].length;
-
-        int maxVal = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0 ; j < n; j++) {
-                if (mat[i][j] > maxVal)
-                    maxVal = mat[i][j];
-            }
-        }
-        maxVal += 1;
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (mat[i][j] == 0) {
-                    setZeroesForElement(mat, i, j, maxVal);
-                }
-            }
-        }
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (mat[i][j] == maxVal) {
-                    mat[i][j] = 0;
-                }
-            }
-        }
-    }
-
-    private static void setZeroesForElement(int[][] mat, int i, int j, int maxVal)
-    {
-        //setting rows
-        for (int k = 0; k < mat.length; k++) {
-            if (mat[k][j] != 0)
-                mat[k][j] = maxVal;
-        }
-
-        //setting columns
-        for (int k = 0; k < mat[i].length; k++) {
-            if (mat[i][k] != 0)
-                mat[i][k] = maxVal;
-        }
-    }
-
-
-
-
-
     public static void setMatrixZeroesV2(int[][] mat)
     {
         int m = mat.length;

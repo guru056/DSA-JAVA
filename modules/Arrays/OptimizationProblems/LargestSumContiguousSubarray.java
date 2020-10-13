@@ -8,10 +8,10 @@ public class LargestSumContiguousSubarray {
         int arr1[] = {-4, -3, -2};
 
         System.out.println(largestSubarraySum(arr));
-        printLargestSumContiguousSubarray(arr);
+        printLargestSumContiguousSubarrayV2(arr);
 
         System.out.println(largestSubarraySum(arr1));
-        printLargestSumContiguousSubarray(arr1);
+        printLargestSumContiguousSubarrayV2(arr1);
     }
 
     public static int largestSubarraySum(int[] arr)
@@ -19,7 +19,7 @@ public class LargestSumContiguousSubarray {
         int currMax = arr[0] ;
         int maxSoFar = arr[0];
 
-        for (int i = 0 ; i < arr.length; i++){
+        for (int i = 1 ; i < arr.length; i++){
             currMax = Math.max(currMax + arr[i], arr[i] );
             maxSoFar = Math.max(maxSoFar, currMax); // end will keep updating to i here if maxSoFar changes.
         }
@@ -27,30 +27,27 @@ public class LargestSumContiguousSubarray {
         return maxSoFar;
     }
 
-    public static void printLargestSumContiguousSubarray(int[] arr)
+    public static void printLargestSumContiguousSubarrayV2(int[] arr)
     {
         int currMax = arr[0] ;
         int maxSoFar = arr[0];
         int start = 0 ;
         int end = 0;
-        int s = 0;
 
-        for (int i = 0 ; i < arr.length; i++){
+        for (int i = 1; i < arr.length; i++) {
             currMax += arr[i];
-
-            if (currMax < arr[i]){
-                s = i ;
-                end = i;
+            if (currMax < arr[i]) {
                 currMax = arr[i];
+                start = i;
+                end = i;
             }
 
-            if (maxSoFar < currMax){
-                start = s;
+            if (currMax > maxSoFar) {
                 end = i;
                 maxSoFar = currMax;
             }
-
         }
-        System.out.println("Start Index : " + start + " , End Index : " + end);
+        System.out.println("Max Sum: " + maxSoFar);
+        System.out.println("Start: " + start + " , End: " + end);
     }
 }
