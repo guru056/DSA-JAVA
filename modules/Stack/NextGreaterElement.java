@@ -22,10 +22,8 @@ public class NextGreaterElement {
         Stack<Integer> st = new Stack<>();
         for (int i = 0; i < arr.length; i++)
         {
-            if (!st.isEmpty() && arr[i] > st.peek()){
-                while (!st.isEmpty()){
-                    System.out.println("NGE for " + st.pop() + " is " + arr[i]);
-                }
+            while (!st.isEmpty() && arr[i] > st.peek()){
+                System.out.println("NGE for " + st.pop() + " is " + arr[i]);
             }
             st.push(arr[i]);
         }

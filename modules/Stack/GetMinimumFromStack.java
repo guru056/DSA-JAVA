@@ -14,6 +14,31 @@ public class GetMinimumFromStack {
      * 18
      *
      */
+    public static void main(String[] args) {
+        SpecialStackOptimized st = new SpecialStackOptimized();
+        st.push(3);
+        System.out.println(st.getMin());
+        st.push(5);
+        System.out.println(st.getMin());
+        st.push(2);
+        System.out.println(st.getMin());
+        st.push(1);
+        System.out.println(st.getMin());
+        st.push(1);
+        System.out.println(st.getMin());
+        st.push(-1);
+        System.out.println(st.getMin());
+
+        System.out.println("=======");
+        System.out.println(st.pop());
+        System.out.println(st.pop());
+        System.out.println(st.pop());
+        System.out.println(st.pop());
+        System.out.println(st.pop());
+        System.out.println(st.pop());
+
+
+    }
 }
 
 class SpecialStack extends Stack<Integer>
@@ -74,7 +99,7 @@ class SpecialStackOptimized extends Stack<Integer>
         }
     }
 
-    public Integer poll()
+    public Integer pop()
     {
         int result = super.pop();
         if (result < this.minElement){

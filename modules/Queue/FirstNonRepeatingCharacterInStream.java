@@ -8,8 +8,11 @@ public class FirstNonRepeatingCharacterInStream {
 
     public static void main(String[] args) {
         String str = "aabcabe";
+        String str1 = "geekg";
+        String str2 = "ggeek";
         printFirstNonRepeatingCharacterInStream(str);
-        printFirstNonRepeatingCharacterInStreamV2(str);
+        printFirstNonRepeatingCharacterInStream(str1);
+        printFirstNonRepeatingCharacterInStream(str2);
     }
     /**
      * Input  : a a b c a b e
@@ -34,25 +37,5 @@ public class FirstNonRepeatingCharacterInStream {
                 System.out.print(queue.peek() + " ");
         }
         System.out.println();
-    }
-
-    public static void printFirstNonRepeatingCharacterInStreamV2(String str)
-    {
-        boolean[] charCount = new boolean[26];
-        Queue<Character> queue = new LinkedList<>();
-        for (int i = 0 ; i < str.length(); i++){
-
-            if (!queue.isEmpty() && queue.peek() == str.charAt(i)) {
-                queue.poll();
-            } else if (!charCount[str.charAt(i) - 'a']){
-                queue.add(str.charAt(i));
-                charCount[str.charAt(i) - 'a'] = true;
-            }
-
-            if (queue.isEmpty())
-                System.out.print(-1 + " ");
-            else
-                System.out.print(queue.peek() + " ");
-        }
     }
 }
