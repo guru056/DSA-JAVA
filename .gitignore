@@ -1,8 +1,8 @@
 /bin/
 
-.idea/
-.classpath
-.project
-*.iml
+/.idea/
+/.classpath
+/.project
+/*.iml
 
-out/
+/out/
