@@ -6,7 +6,7 @@ import java.util.Stack;
 public class ReverseStack {
 
     public static void main(String[] args) {
-        Stack<Integer> st = new Stack<>() {{
+        Stack<Integer> st = new Stack() {{
             push(4);
             push(3);
             push(2);

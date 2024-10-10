@@ -2,8 +2,8 @@ package Arrays.SearchingProblems;
 
 public class MajorityElementInASortedArray {
     public static void main(String[] args) {
-        int arr[] = {1, 2, 3, 3, 3, 3, 10};
-        int key = 3;
+        int arr[] = {1, 2, 2};
+        int key = 2;
         System.out.println(isMajorityElement(arr,key));
 
     }
@@ -37,8 +37,9 @@ public class MajorityElementInASortedArray {
             return -1;
         int mid = (low + high)/2;
         if (arr[mid] == key){
-            if (mid == 0 || arr[mid - 1] != key) return mid;
-//            if (mid == 0 || arr[mid - 1] < key) return mid;
+            if (mid == 0 || arr[mid - 1] != key) {
+                return mid;
+            }
             return getFirstOccurrenceRecursive(arr, low, mid - 1, key);
 
         } else if (key < arr[mid]){

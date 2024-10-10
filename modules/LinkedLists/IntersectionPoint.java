@@ -76,17 +76,9 @@ public class IntersectionPoint {
         Node current1 = ll1.head;
         Node current2 = ll2.head;
 
-        while (current1 != null && current2 != null){
-            current1 = current1.next;
-            current2 = current2.next;
-
-            if (current1 == current2)
-                return current1;
-
-            if (current1 == null)
-                current1 = ll2.head;
-            if (current2 == null)
-                current2 = ll1.head;
+        while (current1 != current2) {
+            current1 = current1 == null ? ll2.head: current1.next;
+            current2 = current2 == null ? ll1.head: current2.next;
         }
         return null;
     }

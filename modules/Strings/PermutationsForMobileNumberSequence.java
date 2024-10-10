@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class PermutationsForMobileNumberSequence {
 
-    private static final Map<Integer,String> DIGIT_WORD_MAP = new HashMap<>() {
+    private static final Map<Integer,String> DIGIT_WORD_MAP = new HashMap() {
         {
             put(2,"abc");
             put(3,"def");

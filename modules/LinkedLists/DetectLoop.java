@@ -1,5 +1,6 @@
 package LinkedLists;
 
+//https://www.geeksforgeeks.org/how-does-floyds-slow-and-fast-pointers-approach-work/
 public class DetectLoop {
 
     public static boolean detectLoop(SinglyLinkedList ll)

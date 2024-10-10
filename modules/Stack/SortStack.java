@@ -6,7 +6,7 @@ import java.util.Stack;
 public class SortStack {
 
     public static void main(String[] args) {
-        Stack<Integer> st = new Stack<>() {{
+        Stack<Integer> st = new Stack() {{
             push(30);
             push(-5);
             push(18);

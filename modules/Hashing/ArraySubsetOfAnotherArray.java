@@ -64,7 +64,7 @@ public class ArraySubsetOfAnotherArray {
     }
 
     /**
-     * O(mlogm) + O(nlogn)
+     * O(mlogm + nlogn)
      * @param arr1
      * @param arr2
      * @return

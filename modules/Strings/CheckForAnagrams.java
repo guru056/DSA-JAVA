@@ -4,7 +4,7 @@ package Strings;
 //https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
 public class CheckForAnagrams {
 
-
+    // add approach for sort the strings and then compare the sorted strings.
     public static boolean checkForAnagrams(String str1, String str2)
     {
         int[] charCount = new int[26];
